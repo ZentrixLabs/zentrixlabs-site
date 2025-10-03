@@ -1,3 +1,13 @@
+---
+title: "NetShift"
+slug: "netshift"
+short: "One-click IP preset switching for Windows."
+status: "active"
+repo: "https://github.com/ZentrixLabs/NetShift"   # (or remove if none)
+tags: ["Windows","C#",".NET"]
+order: 20
+---
+
 
 # NetShift
 
