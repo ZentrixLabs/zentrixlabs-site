@@ -1,22 +1,30 @@
-<!doctype html>
+---
+const { title = "ZentrixLabs" } = Astro.props;
+---
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body style="margin:0; font-family: system-ui, sans-serif; background:#0f0f10; color:#fff;">
+    <header style="background:#1f1f20; padding:1rem;">
+      <nav style="max-width:960px; margin:0 auto; display:flex; gap:1.5rem; align-items:center;">
+        <a href="/" style="font-weight:bold; font-size:1.2rem; color:#39ff14; text-decoration:none;">ZentrixLabs</a>
+        <a href="/projects" style="color:#fff; text-decoration:none;">Projects</a>
+        <a href="/about" style="color:#fff; text-decoration:none;">About</a>
+        <a href="/contact" style="color:#fff; text-decoration:none;">Contact</a>
+        <a href="https://zentrixlabs.net/blog" target="_blank" style="color:#1f4fff; margin-left:auto;">Devlog ↗</a>
+      </nav>
+    </header>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+    <main style="max-width:960px; margin:2rem auto; padding:0 1rem;">
+      <slot />
+    </main>
+
+    <footer style="background:#1f1f20; padding:1rem; text-align:center; font-size:0.9rem; opacity:0.7;">
+      © {new Date().getFullYear()} ZentrixLabs — Built with Astro & Vercel
+    </footer>
+  </body>
+</html>

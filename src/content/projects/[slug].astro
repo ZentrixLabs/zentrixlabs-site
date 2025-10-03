@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('projects');
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{entry.data.title} — ZentrixLabs</title>
+  </head>
+  <body>
+    <h1>{entry.data.title}</h1>
+    <p>{entry.data.short}</p>
+    <Content />
+    {entry.data.repo && <p><a href={entry.data.repo}>GitHub Repo</a></p>}
+  </body>
+</html>
