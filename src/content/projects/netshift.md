@@ -11,8 +11,6 @@ order: 20
 published: true
 ---
 
-# NetShift
-
 ![Build](https://img.shields.io/github/actions/workflow/status/ZentrixLabs/NetShift/deploy.yml?event=push)
 ![Release](https://img.shields.io/github/v/release/ZentrixLabs/NetShift)
 ![License](https://img.shields.io/github/license/ZentrixLabs/NetShift)
