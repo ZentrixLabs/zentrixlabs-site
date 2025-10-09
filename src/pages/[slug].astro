@@ -50,6 +50,21 @@ const { Content } = await entry.render();
       <div class="content-card">
         <Content />
       </div>
+
+      <div class="support-section">
+        <div class="support-card">
+          <div class="support-icon">
+            <i class="fa-duotone fa-solid fa-mug-hot"></i>
+          </div>
+          <div class="support-content">
+            <h3>Support This Project</h3>
+            <p>If you find this project helpful, consider buying me a coffee! ☕</p>
+            <a href="https://www.buymeacoffee.com/Mainframe79" target="_blank" class="coffee-button">
+              <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" />
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -340,6 +355,82 @@ const { Content } = await entry.render();
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    .support-section {
+      margin-top: 3rem;
+      animation: fadeIn 1s ease 0.5s backwards;
+    }
+
+    .support-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      transition: all 0.3s ease;
+      border-left: 4px solid #ff813f;
+    }
+
+    .support-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 129, 63, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(255, 129, 63, 0.2);
+    }
+
+    .support-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+      --fa-primary-color: #ff813f;
+      --fa-secondary-color: #ffdd00;
+      --fa-secondary-opacity: 0.8;
+      animation: steamRise 2s ease-in-out infinite;
+    }
+
+    @keyframes steamRise {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .support-content {
+      flex: 1;
+    }
+
+    .support-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .support-content p {
+      color: #d4d4d8;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .coffee-button {
+      display: inline-block;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .coffee-button img {
+      height: 50px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .coffee-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(255, 129, 63, 0.4);
+    }
+
+    .coffee-button:hover img {
+      transform: scale(1.1);
+    }
+
     @media (max-width: 768px) {
       .project-title {
         font-size: 2.5rem;
@@ -356,6 +447,12 @@ const { Content } = await entry.render();
       .btn-repo {
         width: 100%;
         justify-content: center;
+      }
+
+      .support-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
       }
     }
   </style>

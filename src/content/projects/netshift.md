@@ -142,10 +142,6 @@ Pull requests are welcome!
 Please fork the repository, make your changes, and submit a pull request.  
 Ensure changes are well-tested and match the project's security-first standards.
 
-If you'd like to support this project:
-
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/Mainframe79)
-
 ---
 
 ## How It Works
