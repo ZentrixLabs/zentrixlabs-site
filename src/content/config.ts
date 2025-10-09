@@ -5,7 +5,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     short: z.string(),
-    status: z.enum(['active','beta','mvp','archived']).default('active'),
+    status: z.enum(['active','alpha','beta','mvp','archived']).default('active'),
     category: z.enum(['enterprise','media']).default('enterprise'),
     repo: z.string().url().optional(),
     website: z.string().url().optional(),

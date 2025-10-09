@@ -3,7 +3,7 @@ title: "MarathonTV"
 short: "TV show marathon and playlist manager for Apple platforms"
 status: "alpha"
 category: "media"
-heroImage: "/projects/MarathonTV.png"
+heroImage: "/projects/MarathonTV-Icon.png"
 tags:
   - macOS
   - iOS
@@ -23,7 +23,7 @@ published: true
 
 ## Overview
 
-**MarathonTV** is a smart TV show marathon and playlist manager designed for Apple platforms. Built with SwiftUI and powered by the Network24Core architecture, it provides an intuitive way to create, manage, and enjoy TV show marathons from your Plex Media Server.
+**MarathonTV** is a TV show and Movie marathon and playlist manager designed for Apple platforms. Built with SwiftUI and powered by the Network24Core architecture, it provides an intuitive way to create, manage, and enjoy TV show marathons from your Plex Media Server.
 
 > **Status**: Currently in beta development  
 > **License**: Free to use, closed source  
