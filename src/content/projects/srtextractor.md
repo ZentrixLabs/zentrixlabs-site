@@ -2,6 +2,7 @@
 title: "SrtExtractor"
 short: "Extract and convert subtitles from MKV/MP4 files with intelligent OCR correction"
 status: "active"
+category: "media"
 repo: "https://github.com/ZentrixLabs/SrtExtractor"
 heroImage: "/projects/SrtExtractor.png"
 tags:

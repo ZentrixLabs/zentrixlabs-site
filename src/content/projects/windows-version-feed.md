@@ -2,6 +2,7 @@
 title: "Windows Version Feed"
 short: "JSON feed for Windows OS build information and CVE-to-KB mappings"
 status: "active"
+category: "enterprise"
 repo: "https://github.com/ZentrixLabs/windows-version-feed"
 tags:
   - Windows

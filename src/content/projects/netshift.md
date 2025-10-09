@@ -2,6 +2,7 @@
 title: "NetShift"
 short: "One-click IP preset switching for Windows."
 status: "active"
+category: "enterprise"
 repo: "https://github.com/ZentrixLabs/NetShift"
 heroImage: "/projects/Netshift.png"
 tags:

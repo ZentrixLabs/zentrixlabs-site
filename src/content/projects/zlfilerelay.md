@@ -2,6 +2,7 @@
 title: "ZL File Relay"
 short: "Enterprise file transfer solution for secure DMZ to SCADA network automation"
 status: "beta"
+category: "enterprise"
 tags:
   - Windows
   - C#

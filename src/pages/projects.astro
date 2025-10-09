@@ -2,7 +2,9 @@
 import SiteLayout from "../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
 const all = await getCollection('projects');
-const projects = all.filter(p => p.data.published).sort((a,b)=>a.data.order-b.data.order);
+const publishedProjects = all.filter(p => p.data.published);
+const enterpriseProjects = publishedProjects.filter(p => p.data.category === 'enterprise').sort((a,b)=>a.data.order-b.data.order);
+const mediaProjects = publishedProjects.filter(p => p.data.category === 'media').sort((a,b)=>a.data.order-b.data.order);
 ---
 <SiteLayout title="Projects — ZentrixLabs">
   <div class="projects-header">
@@ -10,8 +12,18 @@ const projects = all.filter(p => p.data.published).sort((a,b)=>a.data.order-b.da
     <p class="subtitle">Innovative solutions for modern infrastructure and indie development</p>
   </div>
 
-  <div class="projects-grid">
-    {projects.map((entry, index) => (
+  <!-- Enterprise Tools Section -->
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-icon">
+        <i class="fa-duotone fa-solid fa-building"></i>
+      </div>
+      <h2>Enterprise Tools</h2>
+      <p class="category-description">Professional solutions for infrastructure, security, and system administration</p>
+    </div>
+    
+    <div class="projects-grid">
+    {enterpriseProjects.map((entry, index) => (
       <a href={`/${entry.slug}`} class="project-card" style={`animation-delay: ${index * 0.1}s`}>
         <div class="card-glow"></div>
         <div class="card-content">
@@ -39,9 +51,52 @@ const projects = all.filter(p => p.data.published).sort((a,b)=>a.data.order-b.da
         </div>
       </a>
     ))}
+    </div>
   </div>
 
-  {projects.length === 0 && (
+  <!-- Media Apps Section -->
+  <div class="category-section">
+    <div class="category-header">
+      <div class="category-icon media-icon">
+        <i class="fa-duotone fa-solid fa-clapperboard"></i>
+      </div>
+      <h2>Media Apps</h2>
+      <p class="category-description">Tools for video processing, subtitle management, and media workflows</p>
+    </div>
+    
+    <div class="projects-grid">
+    {mediaProjects.map((entry, index) => (
+      <a href={`/${entry.slug}`} class="project-card" style={`animation-delay: ${index * 0.1}s`}>
+        <div class="card-glow"></div>
+        <div class="card-content">
+          {entry.data.heroImage ? (
+            <div class="project-logo">
+              <img src={entry.data.heroImage} alt={entry.data.title} />
+            </div>
+          ) : (
+            <div class="project-icon">
+              <i class={`fa-${entry.data.title.toLowerCase().includes('windows') ? 'brands fa-windows' : 'duotone fa-solid'} ${
+                entry.data.title.toLowerCase().includes('windows') ? '' : 
+                entry.data.title.toLowerCase().includes('netshift') ? 'fa-network-wired' : 
+                index === 0 ? 'fa-rocket-launch' : 'fa-microchip'
+              }`}></i>
+            </div>
+          )}
+          <h2 class="project-title">{entry.data.title}</h2>
+          <p class="project-description">{entry.data.short}</p>
+          <div class="card-footer">
+            <span class="view-more">
+              View Details
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </div>
+        </div>
+      </a>
+    ))}
+    </div>
+  </div>
+
+  {publishedProjects.length === 0 && (
     <div class="empty-state">
       <div class="empty-icon">
         <i class="fa-duotone fa-solid fa-box-open"></i>
@@ -84,6 +139,55 @@ const projects = all.filter(p => p.data.published).sort((a,b)=>a.data.order-b.da
       color: #a1a1aa;
       max-width: 600px;
       margin: 0 auto;
+    }
+
+    .category-section {
+      margin-bottom: 5rem;
+    }
+
+    .category-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .category-icon {
+      font-size: 3.5rem;
+      --fa-primary-color: #1f4fff;
+      --fa-secondary-color: #a855f7;
+      --fa-secondary-opacity: 0.6;
+      animation: categoryPulse 3s ease-in-out infinite;
+    }
+
+    .category-icon.media-icon {
+      --fa-primary-color: #f59e0b;
+      --fa-secondary-color: #ef4444;
+      --fa-secondary-opacity: 0.7;
+    }
+
+    @keyframes categoryPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+    }
+
+    .category-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1f4fff 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+
+    .category-description {
+      font-size: 1.05rem;
+      color: #a1a1aa;
+      max-width: 500px;
+      margin: 0;
     }
 
     .projects-grid {
@@ -266,6 +370,18 @@ const projects = all.filter(p => p.data.published).sort((a,b)=>a.data.order-b.da
     @media (max-width: 768px) {
       .projects-header h1 {
         font-size: 2.5rem;
+      }
+
+      .category-icon {
+        font-size: 2.5rem;
+      }
+
+      .category-header h2 {
+        font-size: 2rem;
+      }
+
+      .category-section {
+        margin-bottom: 3rem;
       }
 
       .projects-grid {

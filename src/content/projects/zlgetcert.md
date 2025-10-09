@@ -2,6 +2,7 @@
 title: "ZLGetCert"
 short: "Modern Windows app for certificate requests from on-premises CA without PowerShell"
 status: "beta"
+category: "enterprise"
 repo: "https://github.com/ZentrixLabs/ZLGetCert"
 heroImage: "/projects/ZLGetCert_logo.png"
 tags:
