@@ -1,7 +1,7 @@
 ---
 title: "MarathonTV"
-short: "Smart TV show marathon and playlist manager for Apple platforms"
-status: "beta"
+short: "TV show marathon and playlist manager for Apple platforms"
+status: "alpha"
 category: "media"
 heroImage: "/projects/MarathonTV.png"
 tags:
@@ -39,7 +39,6 @@ published: true
 ## Key Features
 
 ### TV Show Marathon Management
-- 📺 **Smart Playlists**: Create custom marathon playlists for your favorite TV franchises
 - 🎬 **Franchise Blocks**: Organize shows into themed marathon blocks
 - ⏱️ **Duration Tracking**: Track total marathon duration and progress
 - 📊 **Progress Management**: Resume where you left off across devices
@@ -95,40 +94,6 @@ MarathonTV is part of the **Network24 Ecosystem** - a suite of connected media m
 - 🎨 **Consistent Design**: Unified user experience
 - 🚀 **Future Expansion**: More apps coming soon
 
-## Technical Architecture
-
-### Network24Core
-MarathonTV is powered by Network24Core, providing:
-
-**State Management**:
-- `StateCoordinator` - Centralized state coordination
-- `UserProfileState` - User authentication and profiles
-- `CacheStatusState` - Cache management
-- `ConnectionTestState` - Server connectivity
-
-**Services**:
-- `PlexService` - Plex Media Server operations
-- `PlexDiscoveryService` - Server discovery and connection
-- `FranchiseDurationService` - Marathon duration calculations
-- `CloudKitContinuityService` - iCloud synchronization
-- `Network24Logger` - Comprehensive logging
-- `Network24ErrorService` - Error handling and reporting
-
-**Data Models** (SwiftData):
-- `AppleUserProfile` - User account management
-- `ContinuityData` - Cross-device synchronization
-- `PlexConfiguration` - Server configurations
-- `PlaylistItem` - Playlist entries
-- `FranchiseBlock` - Marathon blocks
-- `FranchiseProgress` - Watch progress tracking
-
-### Modern Swift Patterns
-- **Swift 6.2**: Latest language features
-- **Actors**: Thread-safe concurrency
-- **Async/Await**: Modern asynchronous code
-- **Sendable**: Safe data sharing
-- **ModelActor**: Background database operations
-
 ## Getting Started
 
 ### Prerequisites
@@ -170,13 +135,6 @@ Build custom marathon playlists:
 - Reorder content with drag & drop
 - Preview total duration
 - Save for later viewing
-
-### Smart Recommendations
-Intelligent content suggestions:
-- Based on viewing history
-- Genre matching
-- Series completion
-- Trending marathons
 
 ### Cross-Device Continuity
 Seamless experience across all your Apple devices:
@@ -239,7 +197,7 @@ For beta access inquiries, contact ZentrixLabs.
 
 - **Language**: Swift 6.2
 - **Framework**: SwiftUI
-- **Platforms**: macOS 14+, iOS 17+, tvOS 17+
+- **Platforms**: macOS 26+, iOS 26+, tvOS 26+
 - **Data**: SwiftData
 - **Sync**: CloudKit
 - **Architecture**: Network24Core (MVVM + Services)
@@ -257,5 +215,5 @@ For beta access inquiries, contact ZentrixLabs.
 
 **Part of the Network24 Ecosystem** - Connected media experiences for Apple platforms
 
-*MarathonTV is currently in beta. Stay tuned for public release announcements!*
+*MarathonTV is currently in alpha. Stay tuned for public release announcements!*
 
