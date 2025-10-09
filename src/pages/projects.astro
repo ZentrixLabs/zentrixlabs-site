@@ -21,7 +21,11 @@ const projects = all.filter(p => p.data.published).sort((a,b)=>a.data.order-b.da
             </div>
           ) : (
             <div class="project-icon">
-              <i class={`fa-duotone fa-solid ${index === 0 ? 'fa-rocket-launch' : 'fa-microchip'}`}></i>
+              <i class={`fa-${entry.data.title.toLowerCase().includes('windows') ? 'brands fa-windows' : 'duotone fa-solid'} ${
+                entry.data.title.toLowerCase().includes('windows') ? '' : 
+                entry.data.title.toLowerCase().includes('netshift') ? 'fa-network-wired' : 
+                index === 0 ? 'fa-rocket-launch' : 'fa-microchip'
+              }`}></i>
             </div>
           )}
           <h2 class="project-title">{entry.data.title}</h2>
@@ -180,6 +184,15 @@ const projects = all.filter(p => p.data.published).sort((a,b)=>a.data.order-b.da
       --fa-primary-color: #39ff14;
       --fa-secondary-color: #1f4fff;
       --fa-secondary-opacity: 0.6;
+    }
+
+    .project-icon .fa-brands {
+      color: #0078d4;
+      filter: drop-shadow(0 0 8px rgba(0, 120, 212, 0.5));
+    }
+
+    .project-card:hover .project-icon .fa-brands {
+      filter: drop-shadow(0 0 12px rgba(0, 120, 212, 0.8));
     }
 
     @keyframes bounce {
