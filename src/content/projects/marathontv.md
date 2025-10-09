@@ -18,14 +18,14 @@ published: true
 
 ![Platform](https://img.shields.io/badge/platform-macOS%20|%20iOS%20|%20tvOS-blue)
 ![Swift](https://img.shields.io/badge/Swift-6.2-orange)
-![Status](https://img.shields.io/badge/status-beta-yellow)
+![Status](https://img.shields.io/badge/status-alpha-red)
 ![License](https://img.shields.io/badge/license-Closed%20Source-red)
 
 ## Overview
 
 **MarathonTV** is a TV show and Movie marathon and playlist manager designed for Apple platforms. Built with SwiftUI and powered by the Network24Core architecture, it provides an intuitive way to create, manage, and enjoy TV show marathons from your Plex Media Server.
 
-> **Status**: Currently in beta development  
+> **Status**: Currently in alpha development  
 > **License**: Free to use, closed source  
 > **Part of**: Network24 Ecosystem
 
@@ -169,7 +169,7 @@ MarathonTV is the first app in the **Network24 Ecosystem**:
 
 ## Development Status
 
-**Current Phase**: Beta Development
+**Current Phase**: Alpha Development
 
 **What's Working**:
 - ✅ Core franchise management
