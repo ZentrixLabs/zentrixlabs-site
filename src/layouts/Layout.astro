@@ -19,7 +19,7 @@ const { title = "ZentrixLabs" } = Astro.props;
     <header>
       <nav>
         <a href="/" class="logo">
-          <i class="fa-duotone fa-solid fa-bolt logo-icon"></i>
+          <img src="/zl-logo.svg" alt="ZL" class="logo-icon" />
           <span class="logo-text">ZentrixLabs</span>
         </a>
         <div class="nav-links">
@@ -161,11 +161,10 @@ const { title = "ZentrixLabs" } = Astro.props;
       }
 
       .logo-icon {
-        font-size: 1.5rem;
+        height: 1.5rem;
+        width: auto;
         animation: pulse 2s ease-in-out infinite;
-        --fa-primary-color: #39ff14;
-        --fa-secondary-color: #1f4fff;
-        --fa-secondary-opacity: 0.6;
+        filter: drop-shadow(0 0 4px rgba(57, 255, 20, 0.3));
       }
 
       @keyframes pulse {
