@@ -2,11 +2,289 @@
 import SiteLayout from "../layouts/Layout.astro";
 ---
 <SiteLayout title="ZentrixLabs — Modern Infra & Indie Apps">
-  <h1 style="font-size:2.5rem; margin-bottom:1rem;">ZentrixLabs</h1>
-  <p style="font-size:1.2rem; max-width:600px;">
-    Building sysadmin-first infrastructure tools and polished indie apps.
-  </p>
-  <p style="margin-top:1.5rem;">
-    <a href="/projects" style="padding:0.7rem 1.2rem; background:#1f4fff; color:#fff; border-radius:8px; text-decoration:none;">View Projects</a>
-  </p>
+  <div class="hero-section">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      <span>Building the future</span>
+    </div>
+    
+    <h1 class="hero-title">
+      <span class="title-line">Welcome to</span>
+      <span class="title-main gradient-text">ZentrixLabs</span>
+    </h1>
+    
+    <p class="hero-description">
+      Building <span class="highlight">sysadmin-first</span> infrastructure tools and polished indie apps
+      with a focus on <span class="highlight">offline-first UX</span> and sleek design.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="/projects" class="btn btn-primary">
+        <i class="fa-solid fa-rocket"></i>
+        <span>View Projects</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <a href="/about" class="btn btn-secondary">
+        <i class="fa-regular fa-lightbulb"></i>
+        <span>Learn More</span>
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fa-duotone fa-solid fa-infinity"></i></div>
+        <div class="stat-label">Possibilities</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fa-duotone fa-solid fa-bolt"></i></div>
+        <div class="stat-label">Fast & Efficient</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fa-duotone fa-solid fa-bullseye"></i></div>
+        <div class="stat-label">Focused</div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .hero-section {
+      text-align: center;
+      padding: 4rem 0;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(57, 255, 20, 0.1);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #39ff14;
+      border-radius: 50%;
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7); }
+      50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(57, 255, 20, 0); }
+    }
+
+    .hero-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .title-line {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #a1a1aa;
+      letter-spacing: 0.05em;
+    }
+
+    .title-main {
+      font-size: 4.5rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #39ff14 0%, #1f4fff 50%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200% 200%;
+      animation: gradientMove 5s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      color: #d4d4d8;
+      line-height: 1.8;
+    }
+
+    .highlight {
+      color: #39ff14;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1f4fff 0%, #a855f7 100%);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(31, 79, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(31, 79, 255, 0.4);
+    }
+
+    .btn i {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover i:last-child {
+      transform: translateX(4px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 600px;
+      margin: 0 auto;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-item {
+      flex: 1;
+      text-align: center;
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      --fa-primary-color: #39ff14;
+      --fa-secondary-color: #1f4fff;
+      --fa-secondary-opacity: 0.6;
+      animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #a1a1aa;
+      font-weight: 500;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+    }
+
+    @media (max-width: 768px) {
+      .title-main {
+        font-size: 3rem;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .stat-divider {
+        width: 50px;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </SiteLayout>

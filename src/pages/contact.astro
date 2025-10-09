@@ -2,6 +2,362 @@
 import SiteLayout from "../layouts/Layout.astro";
 ---
 <SiteLayout title="Contact — ZentrixLabs">
-  <h1>Contact</h1>
-  <p>Reach us via <a href="https://github.com/ZentrixLabs" target="_blank">GitHub</a> or <a href="https://mainframe79.hashnode.dev/" target="_blank">Hashnode</a>.</p>
+  <div class="contact-container">
+    <div class="contact-header">
+      <div class="header-badge">
+        <span class="badge-dot"></span>
+        <span>Get in Touch</span>
+      </div>
+      <h1>Contact Us</h1>
+      <p class="subtitle">
+        Have questions or want to collaborate? We'd love to hear from you!
+      </p>
+    </div>
+
+    <div class="contact-content">
+      <div class="contact-cards">
+        <a href="https://github.com/ZentrixLabs" target="_blank" class="contact-card github">
+          <div class="card-glow"></div>
+          <div class="card-icon">
+            <i class="fa-brands fa-github"></i>
+          </div>
+          <h2>GitHub</h2>
+          <p>Check out our open source projects and contribute</p>
+          <div class="card-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <a href="https://mainframe79.hashnode.dev/" target="_blank" class="contact-card hashnode">
+          <div class="card-glow"></div>
+          <div class="card-icon">
+            <i class="fa-brands fa-hashnode"></i>
+          </div>
+          <h2>Devlog</h2>
+          <p>Read about our development journey and insights</p>
+          <div class="card-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="info-section">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fa-duotone fa-solid fa-handshake"></i>
+          </div>
+          <h3>Looking to collaborate?</h3>
+          <p>We're always interested in working with talented developers and designers. Reach out through our GitHub or Hashnode!</p>
+        </div>
+
+        <div class="social-grid">
+          <div class="social-item">
+            <div class="social-icon">
+              <i class="fa-duotone fa-solid fa-envelope"></i>
+            </div>
+            <span>Available via GitHub Issues</span>
+          </div>
+          <div class="social-item">
+            <div class="social-icon">
+              <i class="fa-duotone fa-solid fa-code-branch"></i>
+            </div>
+            <span>Open Source Friendly</span>
+          </div>
+          <div class="social-item">
+            <div class="social-icon">
+              <i class="fa-duotone fa-solid fa-users"></i>
+            </div>
+            <span>Community Driven</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .contact-container {
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(57, 255, 20, 0.1);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #39ff14;
+      border-radius: 50%;
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7);
+      }
+      50% {
+        opacity: 0.8;
+        box-shadow: 0 0 0 8px rgba(57, 255, 20, 0);
+      }
+    }
+
+    .contact-header h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #39ff14 0%, #1f4fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #a1a1aa;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .contact-card.github .card-glow {
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+    }
+
+    .contact-card.hashnode .card-glow {
+      background: radial-gradient(circle, rgba(31, 79, 255, 0.15) 0%, transparent 70%);
+    }
+
+    .contact-card:hover .card-glow {
+      opacity: 1;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(57, 255, 20, 0.4);
+      box-shadow: 0 20px 60px rgba(57, 255, 20, 0.2);
+    }
+
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      font-size: 2.5rem;
+    }
+
+    .contact-card.github .card-icon {
+      background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+      color: #fff;
+    }
+
+    .contact-card.hashnode .card-icon {
+      background: linear-gradient(135deg, #1f4fff 0%, #0ea5e9 100%);
+      color: #fff;
+    }
+
+    .contact-card:hover .card-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .card-icon i {
+      animation: iconPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes iconPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .contact-card h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-card p {
+      color: #a1a1aa;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-arrow {
+      display: flex;
+      align-items: center;
+      color: #39ff14;
+      margin-top: auto;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-card:hover .card-arrow {
+      transform: translateX(5px);
+    }
+
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      border-left: 4px solid #39ff14;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .info-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+      --fa-primary-color: #39ff14;
+      --fa-secondary-color: #1f4fff;
+      --fa-secondary-opacity: 0.6;
+    }
+
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .info-card p {
+      color: #d4d4d8;
+      line-height: 1.8;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(31, 79, 255, 0.3);
+    }
+
+    .social-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      --fa-primary-color: #39ff14;
+      --fa-secondary-color: #1f4fff;
+      --fa-secondary-opacity: 0.6;
+    }
+
+    .social-item span {
+      color: #d4d4d8;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .contact-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-card {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </SiteLayout>

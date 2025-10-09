@@ -1,10 +1,11 @@
 ---
+import SiteLayout from "../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('projects');
   return entries.map((entry) => ({
-    params: { slug: entry.slug },   // <-- use auto slug
+    params: { slug: entry.slug },
     props: { entry }
   }));
 }
@@ -12,15 +13,317 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{entry.data.title} — ZentrixLabs</title>
-  </head>
-  <body>
-    <h1>{entry.data.title}</h1>
-    <p>{entry.data.short}</p>
-    <Content />
-    {entry.data.repo && <p><a href={entry.data.repo}>GitHub Repo</a></p>}
-  </body>
-</html>
+<SiteLayout title={`${entry.data.title} — ZentrixLabs`}>
+  <div class="project-detail">
+    <a href="/projects" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Back to Projects</span>
+    </a>
+
+    <div class="project-header">
+      <div class="header-badge">
+        <span class="badge-dot"></span>
+        <span>Project Details</span>
+      </div>
+      <h1 class="project-title">{entry.data.title}</h1>
+      <p class="project-subtitle">{entry.data.short}</p>
+      
+      {entry.data.repo && (
+        <div class="project-actions">
+          <a href={entry.data.repo} target="_blank" class="btn-repo">
+            <i class="fa-brands fa-github"></i>
+            <span>View on GitHub</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      )}
+    </div>
+
+    <div class="project-content">
+      <div class="content-card">
+        <Content />
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .project-detail {
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a1a1aa;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      color: #39ff14;
+      transform: translateX(-5px);
+    }
+
+    .back-link i {
+      transition: transform 0.3s ease;
+    }
+
+    .back-link:hover i {
+      transform: translateX(-3px);
+    }
+
+    .project-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(31, 79, 255, 0.1);
+      border: 1px solid rgba(31, 79, 255, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #1f4fff;
+      border-radius: 50%;
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(31, 79, 255, 0.7);
+      }
+      50% {
+        opacity: 0.8;
+        box-shadow: 0 0 0 8px rgba(31, 79, 255, 0);
+      }
+    }
+
+    .project-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #39ff14 0%, #1f4fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .project-subtitle {
+      font-size: 1.3rem;
+      color: #a1a1aa;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .project-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn-repo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+      color: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-repo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-repo:hover::before {
+      left: 100%;
+    }
+
+    .btn-repo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(168, 85, 247, 0.4);
+    }
+
+    .btn-repo i:last-child {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-repo:hover i:last-child {
+      transform: translate(3px, -3px);
+    }
+
+    .project-content {
+      animation: fadeIn 1s ease 0.3s backwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .content-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem;
+    }
+
+    .content-card :global(h2) {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(57, 255, 20, 0.3);
+    }
+
+    .content-card :global(h3) {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+
+    .content-card :global(p) {
+      color: #d4d4d8;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    .content-card :global(ul),
+    .content-card :global(ol) {
+      color: #d4d4d8;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      padding-left: 2rem;
+    }
+
+    .content-card :global(li) {
+      margin-bottom: 0.5rem;
+    }
+
+    .content-card :global(a) {
+      color: #39ff14;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(57, 255, 20, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .content-card :global(a:hover) {
+      color: #1f4fff;
+      border-bottom-color: rgba(31, 79, 255, 0.5);
+    }
+
+    .content-card :global(code) {
+      background: rgba(168, 85, 247, 0.15);
+      color: #a855f7;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.9em;
+      font-family: 'Courier New', monospace;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .content-card :global(pre) {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-card :global(pre code) {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #e4e4e7;
+    }
+
+    .content-card :global(blockquote) {
+      border-left: 4px solid #39ff14;
+      padding-left: 1.5rem;
+      margin: 1.5rem 0;
+      color: #a1a1aa;
+      font-style: italic;
+    }
+
+    .content-card :global(img) {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .project-title {
+        font-size: 2.5rem;
+      }
+
+      .project-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .content-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .btn-repo {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</SiteLayout>

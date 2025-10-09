@@ -1,12 +1,226 @@
 ---
+import SiteLayout from "../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
 const all = await getCollection('projects');
 const projects = all.filter(p => p.data.published).sort((a,b)=>a.data.order-b.data.order);
 ---
-<ul>
-  {projects.map((entry) => (
-    <li>
-      <a href={`/${entry.slug}`}>{entry.data.title}</a> — {entry.data.short}
-    </li>
-  ))}
-</ul>
+<SiteLayout title="Projects — ZentrixLabs">
+  <div class="projects-header">
+    <h1>Our Projects</h1>
+    <p class="subtitle">Innovative solutions for modern infrastructure and indie development</p>
+  </div>
+
+  <div class="projects-grid">
+    {projects.map((entry, index) => (
+      <a href={`/${entry.slug}`} class="project-card" style={`animation-delay: ${index * 0.1}s`}>
+        <div class="card-glow"></div>
+        <div class="card-content">
+          <div class="project-icon">
+            <i class={`fa-duotone fa-solid ${index === 0 ? 'fa-rocket-launch' : 'fa-microchip'}`}></i>
+          </div>
+          <h2 class="project-title">{entry.data.title}</h2>
+          <p class="project-description">{entry.data.short}</p>
+          <div class="card-footer">
+            <span class="view-more">
+              View Details
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  {projects.length === 0 && (
+    <div class="empty-state">
+      <div class="empty-icon">
+        <i class="fa-duotone fa-solid fa-box-open"></i>
+      </div>
+      <h3>No projects yet</h3>
+      <p>Check back soon for exciting new projects!</p>
+    </div>
+  )}
+
+  <style>
+    .projects-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .projects-header h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #39ff14 0%, #1f4fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #a1a1aa;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .project-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      animation: slideUp 0.6s ease backwards;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(31, 79, 255, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .project-card:hover .card-glow {
+      opacity: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(57, 255, 20, 0.4);
+      box-shadow: 0 20px 60px rgba(31, 79, 255, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      animation: bounce 2s ease-in-out infinite;
+      --fa-primary-color: #39ff14;
+      --fa-secondary-color: #1f4fff;
+      --fa-secondary-opacity: 0.6;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .project-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .project-description {
+      color: #d4d4d8;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .view-more {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #39ff14;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .view-more i {
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .view-more i {
+      transform: translateX(4px);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .empty-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .empty-state h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .empty-state p {
+      color: #a1a1aa;
+    }
+
+    @media (max-width: 768px) {
+      .projects-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</SiteLayout>

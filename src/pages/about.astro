@@ -2,8 +2,351 @@
 import SiteLayout from "../layouts/Layout.astro";
 ---
 <SiteLayout title="About — ZentrixLabs">
-  <h1>About ZentrixLabs</h1>
-  <p>
-    ZentrixLabs builds modern infrastructure dashboards and indie apps with a focus on offline-first UX, sysadmin-first tooling, and sleek design.
-  </p>
+  <div class="about-container">
+    <div class="about-header">
+      <div class="header-badge">
+        <span class="badge-pulse"></span>
+        <span>About Us</span>
+      </div>
+      <h1>About ZentrixLabs</h1>
+      <p class="lead">
+        Building the future of infrastructure and indie development
+      </p>
+    </div>
+
+    <div class="content-section">
+      <div class="mission-card">
+        <div class="card-icon">
+          <i class="fa-duotone fa-solid fa-bullseye-arrow"></i>
+        </div>
+        <h2>Our Mission</h2>
+        <p>
+          ZentrixLabs builds modern infrastructure dashboards and indie apps with a focus on 
+          <strong>offline-first UX</strong>, <strong>sysadmin-first tooling</strong>, and <strong>sleek design</strong>.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-duotone fa-solid fa-rocket"></i>
+          </div>
+          <h3>Fast & Efficient</h3>
+          <p>Performance-optimized tools built for real-world usage</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-duotone fa-solid fa-screwdriver-wrench"></i>
+          </div>
+          <h3>Sysadmin First</h3>
+          <p>Tools designed by sysadmins, for sysadmins</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-duotone fa-solid fa-wifi-slash"></i>
+          </div>
+          <h3>Offline First</h3>
+          <p>Work anywhere, anytime, without internet dependency</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-duotone fa-solid fa-palette"></i>
+          </div>
+          <h3>Sleek Design</h3>
+          <p>Beautiful interfaces that developers love to use</p>
+        </div>
+      </div>
+
+      <div class="values-section">
+        <h2 class="section-title">Our Values</h2>
+        <div class="values-list">
+          <div class="value-item">
+            <div class="value-number">01</div>
+            <div class="value-content">
+              <h3>Simplicity</h3>
+              <p>We believe in building tools that are powerful yet simple to use.</p>
+            </div>
+          </div>
+          
+          <div class="value-item">
+            <div class="value-number">02</div>
+            <div class="value-content">
+              <h3>Innovation</h3>
+              <p>Constantly pushing boundaries to create better solutions.</p>
+            </div>
+          </div>
+          
+          <div class="value-item">
+            <div class="value-number">03</div>
+            <div class="value-content">
+              <h3>Community</h3>
+              <p>Building with and for the developer community.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .about-container {
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .about-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-pulse {
+      width: 8px;
+      height: 8px;
+      background: #a855f7;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
+      }
+      50% {
+        opacity: 0.8;
+        box-shadow: 0 0 0 8px rgba(168, 85, 247, 0);
+      }
+    }
+
+    .about-header h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #39ff14 0%, #1f4fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      font-size: 1.3rem;
+      color: #a1a1aa;
+    }
+
+    .content-section {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .mission-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #39ff14, #1f4fff, #a855f7);
+      background-size: 200% 100%;
+      animation: gradientSlide 3s ease infinite;
+    }
+
+    @keyframes gradientSlide {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .card-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      --fa-primary-color: #39ff14;
+      --fa-secondary-color: #1f4fff;
+      --fa-secondary-opacity: 0.6;
+      animation: iconSpin 20s linear infinite;
+    }
+
+    @keyframes iconSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .mission-card h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .mission-card p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #d4d4d8;
+    }
+
+    .mission-card strong {
+      color: #39ff14;
+      font-weight: 600;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(57, 255, 20, 0.3);
+      box-shadow: 0 10px 30px rgba(57, 255, 20, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      --fa-primary-color: #39ff14;
+      --fa-secondary-color: #1f4fff;
+      --fa-secondary-opacity: 0.6;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-item:hover .feature-icon {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .feature-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .feature-item p {
+      font-size: 0.95rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    .values-section {
+      margin-top: 2rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(135deg, #1f4fff 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .values-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .value-item {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .value-item:hover {
+      border-color: rgba(31, 79, 255, 0.3);
+      transform: translateX(10px);
+    }
+
+    .value-number {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #39ff14, #1f4fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .value-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .value-content p {
+      font-size: 1rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .about-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .value-item {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .mission-card {
+        padding: 2rem;
+      }
+    }
+  </style>
 </SiteLayout>
