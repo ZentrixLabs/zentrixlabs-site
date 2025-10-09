@@ -97,9 +97,9 @@ MarathonTV is part of the **Network24 Ecosystem** - a suite of connected media m
 ## Getting Started
 
 ### Prerequisites
-- **macOS 14** (Sonoma) or later
-- **iOS 17** or later
-- **tvOS 17** or later
+- **macOS 26** (Sonoma) or later
+- **iOS 26** or later
+- **tvOS 26** or later
 - **Plex Media Server** with TV show library
 - **iCloud Account** (optional, for sync)
 
