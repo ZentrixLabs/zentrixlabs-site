@@ -186,7 +186,7 @@ MarathonTV is the first app in the **Network24 Ecosystem**:
 
 ## Support
 
-MarathonTV is currently in closed beta:
+MarathonTV is currently in alpha:
 - Limited release during development
 - Feedback welcome from beta testers
 - Public release planned for 2025
