@@ -77,7 +77,7 @@ SrtExtractor automatically analyzes available subtitle tracks and recommends the
 
 ### Multi-Pass OCR Correction
 
-The advanced correction system ensures professional-quality subtitles, powered by **[ZentrixLabs.OcrCorrection](https://www.nuget.org/packages/ZentrixLabs.OcrCorrection)** - our comprehensive OCR error correction library with **~1,000 professionally-tested patterns**.
+The advanced correction system ensures professional-quality subtitles, powered by **[ZentrixLabs.OcrCorrection](https://www.nuget.org/packages/ZentrixLabs.OcrCorrection)** - our comprehensive OCR error correction library with **~841 professionally-tested patterns**.
 
 #### Correction Modes
 - **Quick Mode** (1 pass): Fast processing for obvious errors
@@ -127,24 +127,30 @@ Clean up existing SRT files in bulk:
 
 **Example Results**: 79 files processed with 81,000+ corrections in minutes!
 
-## External Tools Integration
+## Bundled Tools
 
-SrtExtractor integrates seamlessly with industry-standard tools:
+All tools are included in the SrtExtractor release - no installation, downloads, or internet connection required!
+
+### Tesseract OCR
+- **Purpose**: High-quality OCR for image-based (PGS) subtitles
+- **Included**: `tesseract.exe` + 51 DLLs (~160 MB)
+- **Language Data**: English training data (`eng.traineddata`) included
+- **License**: Apache 2.0
+- **Quality**: ~100% accuracy on clear subtitle images
 
 ### MKVToolNix
-- **Purpose**: MKV file analysis and extraction
-- **Auto-Install**: Via winget if not found
-- **Tools**: `mkvmerge.exe`, `mkvextract.exe`
+- **Purpose**: MKV file analysis and subtitle extraction
+- **Included**: `mkvmerge.exe`, `mkvextract.exe` + DLLs (~37 MB)
+- **License**: GPL-2.0
+- **Version**: Latest stable release bundled
 
 ### FFmpeg
-- **Purpose**: MP4 processing and extraction
-- **Auto-Download**: During development build
-- **Tools**: `ffmpeg.exe`, `ffprobe.exe`
+- **Purpose**: MP4 file processing and subtitle extraction
+- **Included**: `ffmpeg.exe`, `ffprobe.exe` (~334 MB)
+- **License**: GPL
+- **Version**: Latest stable release bundled
 
-### Subtitle Edit CLI
-- **Purpose**: OCR conversion for image-based subtitles
-- **Auto-Build**: From source during development
-- **Tool**: `seconv.exe`
+**Total Size**: ~530 MB (fully portable, zero dependencies)
 
 ## User Interface
 
@@ -193,12 +199,21 @@ Customize output filenames with flexible patterns:
 ## Technical Details
 
 ### Architecture
-Built with modern .NET 9 and WPF using the MVVM pattern:
-- **Models**: Data structures for tracks and settings
-- **ViewModels**: Business logic and state management
-- **Views**: XAML-based user interface
-- **Services**: External tool integration
-- **Recommendation Engine**: Intelligent track selection
+
+Built with modern .NET 9 and WPF, SrtExtractor follows the MVVM pattern with clean separation of concerns:
+
+- **Models**: Data structures for tracks, settings, and tool status
+- **ViewModels**: UI coordination, track selection, and settings management
+- **Views**: XAML-based user interface with modern design
+- **Coordinators** (NEW in v2.5.0): Focused business logic handlers
+  - **ExtractionCoordinator**: Extraction strategies and OCR correction
+  - **BatchCoordinator**: Batch queue management and processing
+  - **FileCoordinator**: File picking, recent files, network detection
+  - **ToolCoordinator**: Tool detection and path management
+  - **CleanupCoordinator**: Temporary file cleanup operations
+- **Services**: External tool integration and file operations
+- **State**: Observable state management for data binding
+- **Recommendation Engine**: Intelligent track selection prioritizing SubRip/SRT over HDMV PGS
 
 ### Logging
 Comprehensive logging system:
@@ -211,28 +226,20 @@ Comprehensive logging system:
 
 ### Common Issues
 
-**Tools Not Found**
-- Use "Re-detect Tools" button
-- Check tool installation paths
+1. **Tools Not Found**: Use "Re-detect Tools" button or check tool installation
+2. **Extraction Fails**: Verify the selected track is a supported format
+3. **OCR Issues**: Ensure Tesseract is properly bundled and available
+4. **Batch Mode Not Working**: Switch to the Batch tab and add files to the queue via drag & drop
+5. **Network Files Slow**: Files on network drives will take longer - this is normal
+6. **Temporary Files Left Behind**: Use the "🧹 Cleanup Temp Files" button if needed
+7. **Cancellation Issues**: If processes don't stop, restart the application
+8. **Batch SRT Correction Shows "None Found"**: Ensure you've selected a folder and clicked "Scan for SRT Files"
+9. **SRT Files Not Updating**: Check that files aren't read-only or locked by another application
+10. **Wrong Track Recommended**: Check the log for recommendation decisions; you can manually select a different track
 
-**Extraction Fails**
-- Verify track format is supported
-- Check log files for details
+### Log Files
 
-**Network Files Slow**
-- Files on network drives take longer (this is normal)
-- Time estimates are shown with 🌐 indicator
-
-**Batch Processing Issues**
-- Ensure batch mode is enabled
-- Check that files aren't locked or read-only
-
-**Wrong Track Recommended**
-- Check log for recommendation reasoning
-- Manually select different track if needed
-
-### Cleanup
-Use the "🧹 Cleanup Temp Files" button if temporary files accumulate.
+Check the log files in `C:\ProgramData\ZentrixLabs\SrtExtractor\Logs\` for detailed error information.
 
 ## Contributing
 
@@ -245,9 +252,8 @@ Licensed under the [MIT License](https://github.com/ZentrixLabs/SrtExtractor/blo
 ## Acknowledgments
 
 - **[ZentrixLabs.OcrCorrection](https://www.nuget.org/packages/ZentrixLabs.OcrCorrection)** - Advanced OCR error correction engine
-- **MKVToolNix** - Matroska video container operations
-- **Subtitle Edit** - OCR conversion for image-based subtitles
-- **FFmpeg** - Complete multimedia framework
+- **MKVToolNix** - Matroska tools for video container operations
+- **FFmpeg** - Complete multimedia framework for MP4 processing
 
 ---
 
