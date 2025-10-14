@@ -97,7 +97,7 @@ MarathonTV is part of the **Network24 Ecosystem** - a suite of connected media m
 ## Getting Started
 
 ### Prerequisites
-- **macOS 26** (Sonoma) or later
+- **macOS 26** (Tahoe) or later
 - **iOS 26** or later
 - **tvOS 26** or later
 - **Plex Media Server** with TV show library
@@ -110,6 +110,19 @@ MarathonTV will be available as a free download for Apple platforms:
 1. **macOS**: Download from the Mac App Store (coming soon)
 2. **iOS**: Download from the App Store (coming soon)
 3. **tvOS**: Download from the tvOS App Store (coming soon)
+
+### App Store Availability
+
+<div class="store-badges">
+  <div class="store-badge">Mac App Store — Coming soon</div>
+  <div class="store-badge">App Store — Coming soon</div>
+  <div class="store-badge">Apple TV App Store — Coming soon</div>
+  
+  <!-- Optional: sign-up link -->
+  <!-- <a href="/contact" class="store-badge signup">Notify me</a> -->
+  
+  
+</div>
 
 ### First-Time Setup
 

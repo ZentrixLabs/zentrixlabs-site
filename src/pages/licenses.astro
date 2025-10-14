@@ -1,0 +1,27 @@
+---
+import SiteLayout from "../layouts/Layout.astro";
+---
+<SiteLayout title="Licenses — ZentrixLabs">
+  <div class="page-container">
+    <h1>Licenses</h1>
+    <p>Open source projects are released under their respective licenses as noted in their repositories.</p>
+    <ul>
+      <li>SrtExtractor — MIT (see repository)</li>
+      <li>NetShift — MIT (see repository)</li>
+      <li>ZentrixLabs.FalconSdk — MIT (see repository)</li>
+      <li>ZL File Relay — MIT (during beta; subject to change)</li>
+      <li>Closed-source apps are proprietary unless stated otherwise.</li>
+    </ul>
+    <p>Third-party libraries are used under their respective licenses.</p>
+  </div>
+
+  <style>
+    .page-container { max-width: 800px; margin: 0 auto; animation: fadeInUp 0.8s ease; }
+    h1 { font-size: 2.2rem; margin-bottom: 1rem; }
+    p { color: #d4d4d8; margin-bottom: 1rem; }
+    ul { color: #d4d4d8; margin: 0 0 1rem 1.25rem; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: translateY(0);} }
+  </style>
+</SiteLayout>
+
+

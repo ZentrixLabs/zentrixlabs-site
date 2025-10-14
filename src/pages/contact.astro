@@ -16,6 +16,18 @@ import SiteLayout from "../layouts/Layout.astro";
 
     <div class="contact-content">
       <div class="contact-cards">
+        <a href="mailto:hello@zentrixlabs.net" class="contact-card email">
+          <div class="card-glow"></div>
+          <div class="card-icon">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <h2>Email</h2>
+          <p>Reach out directly for inquiries and collaboration</p>
+          <div class="card-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+
         <a href="https://github.com/ZentrixLabs" target="_blank" class="contact-card github">
           <div class="card-glow"></div>
           <div class="card-icon">
@@ -184,6 +196,10 @@ import SiteLayout from "../layouts/Layout.astro";
       pointer-events: none;
     }
 
+    .contact-card.email .card-glow {
+      background: radial-gradient(circle, rgba(57, 255, 20, 0.15) 0%, transparent 70%);
+    }
+
     .contact-card.github .card-glow {
       background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
     }
@@ -214,6 +230,11 @@ import SiteLayout from "../layouts/Layout.astro";
       position: relative;
       z-index: 1;
       font-size: 2.5rem;
+    }
+
+    .contact-card.email .card-icon {
+      background: linear-gradient(135deg, #39ff14 0%, #22c55e 100%);
+      color: #fff;
     }
 
     .contact-card.github .card-icon {
@@ -348,6 +369,10 @@ import SiteLayout from "../layouts/Layout.astro";
 
       .contact-cards {
         grid-template-columns: 1fr;
+      }
+
+      .contact-card {
+        padding: 2rem 1.5rem;
       }
 
       .social-grid {

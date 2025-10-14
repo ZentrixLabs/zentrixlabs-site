@@ -99,9 +99,9 @@ Automatically stops when no more corrections are found, saving time while ensuri
 ### Real-World Results
 - **Average**: 1,000+ corrections per SRT file
 - **Large Collections**: 80,000+ total corrections across batch operations
-- **Multi-Pass Benefits**: Each pass finds 5-15% additional corrections
-- **Success Rate**: 100% on tested corpus of 10,000+ subtitles
-- **Zero False Positives**: Patterns specifically designed to avoid breaking valid words
+- **Multi-Pass Benefits**: Each pass finds 5–15% additional corrections
+- **Observed Success Rate**: ~99% on our internal test set of 10,000+ subtitles
+- **Low False Positives**: Patterns designed to minimize changes to valid words
 
 ## Batch Processing
 
@@ -136,7 +136,7 @@ All tools are included in the SrtExtractor release - no installation, downloads,
 - **Included**: `tesseract.exe` + 51 DLLs (~160 MB)
 - **Language Data**: English training data (`eng.traineddata`) included
 - **License**: Apache 2.0
-- **Quality**: ~100% accuracy on clear subtitle images
+- **Quality**: High accuracy on clear subtitle images in our tests
 
 ### MKVToolNix
 - **Purpose**: MKV file analysis and subtitle extraction

@@ -50,7 +50,15 @@ const { title = "ZentrixLabs" } = Astro.props;
 
     <footer>
       <div class="footer-content">
-        <p>© {new Date().getFullYear()} ZentrixLabs — Built with Astro & Vercel</p>
+        <p class="footer-tagline">Sysadmin-first infra tools & indie apps</p>
+        <div class="footer-meta">
+          <p>© {new Date().getFullYear()} ZentrixLabs — Built with Astro & Vercel</p>
+          <nav class="footer-links">
+            <a href="/privacy">Privacy</a>
+            <span class="dot">•</span>
+            <a href="/licenses">Licenses</a>
+          </nav>
+        </div>
         <div class="footer-pulse"></div>
       </div>
     </footer>
@@ -252,9 +260,40 @@ const { title = "ZentrixLabs" } = Astro.props;
         position: relative;
       }
 
+      .footer-tagline {
+        font-size: 0.95rem;
+        color: #d4d4d8;
+        margin-bottom: 0.6rem;
+      }
+
+      .footer-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: center;
+      }
+
       .footer-content p {
         font-size: 0.9rem;
         opacity: 0.6;
+      }
+
+      .footer-links {
+        display: inline-flex;
+        gap: 0.6rem;
+        align-items: center;
+      }
+
+      .footer-links a {
+        color: #a1a1aa;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .footer-links a:hover {
+        color: #fff;
       }
 
       .footer-pulse {

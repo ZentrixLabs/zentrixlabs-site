@@ -42,6 +42,10 @@ const mediaProjects = publishedProjects.filter(p => p.data.category === 'media')
           )}
           <h2 class="project-title">{entry.data.title}</h2>
           <p class="project-description">{entry.data.short}</p>
+          <div class="badge-row">
+            <span class={`badge status ${entry.data.status}`}>{entry.data.status}</span>
+            <span class={`badge source ${entry.data.repo ? 'open' : 'closed'}`}>{entry.data.repo ? 'Open Source' : 'Closed Source'}</span>
+          </div>
           <div class="card-footer">
             <span class="view-more">
               View Details
@@ -84,6 +88,10 @@ const mediaProjects = publishedProjects.filter(p => p.data.category === 'media')
           )}
           <h2 class="project-title">{entry.data.title}</h2>
           <p class="project-description">{entry.data.short}</p>
+          <div class="badge-row">
+            <span class={`badge status ${entry.data.status}`}>{entry.data.status}</span>
+            <span class={`badge source ${entry.data.repo ? 'open' : 'closed'}`}>{entry.data.repo ? 'Open Source' : 'Closed Source'}</span>
+          </div>
           <div class="card-footer">
             <span class="view-more">
               View Details
@@ -316,6 +324,34 @@ const mediaProjects = publishedProjects.filter(p => p.data.category === 'media')
       line-height: 1.6;
       margin-bottom: 1.5rem;
     }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #d4d4d8;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .badge.status.alpha { border-color: rgba(245, 158, 11, 0.4); color: #f59e0b; background: rgba(245, 158, 11, 0.12); }
+    .badge.status.beta { border-color: rgba(234, 179, 8, 0.4); color: #eab308; background: rgba(234, 179, 8, 0.12); }
+    .badge.status.active { border-color: rgba(57, 255, 20, 0.35); color: #39ff14; background: rgba(57, 255, 20, 0.08); }
+    .badge.status.mvp { border-color: rgba(168, 85, 247, 0.4); color: #a855f7; background: rgba(168, 85, 247, 0.12); }
+    .badge.status.archived { border-color: rgba(239, 68, 68, 0.4); color: #ef4444; background: rgba(239, 68, 68, 0.12); }
+
+    .badge.source.open { border-color: rgba(31, 79, 255, 0.4); color: #1f4fff; background: rgba(31, 79, 255, 0.12); }
+    .badge.source.closed { border-color: rgba(239, 68, 68, 0.4); color: #ef4444; background: rgba(239, 68, 68, 0.12); }
 
     .card-footer {
       display: flex;

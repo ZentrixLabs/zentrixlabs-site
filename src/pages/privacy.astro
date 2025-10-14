@@ -1,0 +1,25 @@
+---
+import SiteLayout from "../layouts/Layout.astro";
+---
+<SiteLayout title="Privacy — ZentrixLabs">
+  <div class="page-container">
+    <h1>Privacy Policy</h1>
+    <p>We respect your privacy. ZentrixLabs products are designed with a privacy-first mindset.</p>
+    <ul>
+      <li>No analytics or tracking on product pages.</li>
+      <li>Applications operate locally; any cloud sync is opt-in.</li>
+      <li>When contacting us via email, your message is used solely to respond.</li>
+    </ul>
+    <p>Questions? Email <a href="mailto:hello@zentrixlabs.net">hello@zentrixlabs.net</a>.</p>
+  </div>
+
+  <style>
+    .page-container { max-width: 800px; margin: 0 auto; animation: fadeInUp 0.8s ease; }
+    h1 { font-size: 2.2rem; margin-bottom: 1rem; }
+    p { color: #d4d4d8; margin-bottom: 1rem; }
+    ul { color: #d4d4d8; margin: 0 0 1rem 1.25rem; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: translateY(0);} }
+  </style>
+</SiteLayout>
+
+
