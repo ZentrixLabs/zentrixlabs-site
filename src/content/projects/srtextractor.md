@@ -23,7 +23,7 @@ published: true
 
 SrtExtractor is a powerful Windows application that extracts and converts subtitles from video files (MKV and MP4) into SRT format. Built with .NET 9 and WPF, it provides an intuitive interface for both single-file and batch processing operations.
 
-### 🆕 What's New in v2.5.0
+### 🆕 What's New in v2.5.1
 
 **Architecture Refactoring & Code Quality:**
 - 🏗️ **Major Code Restructuring** - Eliminated God Object anti-pattern from MainViewModel
