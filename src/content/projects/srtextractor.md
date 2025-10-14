@@ -253,6 +253,8 @@ Licensed under the [MIT License](https://github.com/ZentrixLabs/SrtExtractor/blo
 
 - **[ZentrixLabs.OcrCorrection](https://www.nuget.org/packages/ZentrixLabs.OcrCorrection)** - Advanced OCR error correction engine
 - **MKVToolNix** - Matroska tools for video container operations
+- **Subtitle Edit** - BluRay SUP parsing library for image-based subtitle conversion
+- **Tesseract OCR** - High-quality optical character recognition engine
 - **FFmpeg** - Complete multimedia framework for MP4 processing
 
 ---
