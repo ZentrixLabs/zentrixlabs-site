@@ -1,7 +1,7 @@
 ---
 title: "ZLGetCert"
 short: "Modern Windows app for certificate requests from on-premises CA without PowerShell"
-status: "beta"
+status: "active"
 category: "enterprise"
 repo: "https://github.com/ZentrixLabs/ZLGetCert"
 heroImage: "/projects/ZLGetCert_logo.png"
@@ -24,7 +24,7 @@ published: true
 
 ZLGetCert is a modern Windows WPF application that simplifies certificate requests from on-premises Certificate Authority (CA) without requiring PowerShell or command-line expertise. Features a clean, card-based UI with comprehensive configuration management.
 
-> **Status**: Currently in beta - actively developed and tested
+> **Status**: Stable release v1.8.2 — digitally signed installer. See the latest release on GitHub.
 
 ### Key Features
 
@@ -33,7 +33,7 @@ ZLGetCert is a modern Windows WPF application that simplifies certificate reques
 - ⚙️ **Configurable Options**: Dynamic hash algorithms and log levels from configuration
 - 📝 **Centralized Logging**: Comprehensive logging system
 - 🔧 **Environment Configuration**: Flexible `appsettings.json` configuration
-- 🔐 **OpenSSL Integration**: Optional PEM/KEY extraction
+- 🔐 **Pure .NET PEM/KEY Export**: No external dependencies required
 - 🔒 **Secure Password Handling**: User-configurable PFX passwords with secure storage
 - ⛓️ **Certificate Chain Support**: Automatic root/intermediate compilation
 - ⚡ **Real-time Validation**: JSON validator with instant feedback
@@ -43,7 +43,7 @@ ZLGetCert is a modern Windows WPF application that simplifies certificate reques
 ### Prerequisites
 - **Windows Server 2016** or later
 - **.NET Framework 4.8**
-- **OpenSSL for Windows** (optional, for PEM/KEY extraction)
+- **No OpenSSL required** (built-in PEM/KEY export)
 - **Administrator privileges** (for certificate store operations)
 
 ### Getting Started
@@ -97,17 +97,9 @@ Submit existing Certificate Signing Requests:
     "CertificateFolder": "C:\\ssl",
     "LogPath": "C:\\ProgramData\\ZentrixLabs\\ZLGetCert"
   },
-  "OpenSSL": {
-    "ExecutablePath": "",
-    "AutoDetect": true,
-    "CommonPaths": [
-      "C:\\Program Files\\OpenSSL-Win64\\bin\\openssl.exe"
-    ]
-  },
   "DefaultSettings": {
     "KeyLength": 2048,
     "HashAlgorithm": "sha256",
-    "DefaultPassword": "password",
     "RequirePasswordConfirmation": true,
     "AutoCleanup": true,
     "RememberPassword": false,
@@ -149,14 +141,12 @@ Direct JSON editing capabilities:
 - Detailed error messages
 - Safety checks prevent invalid configurations
 
-### OpenSSL Integration
+### PEM/KEY Export (Pure .NET)
 
-When OpenSSL is detected, the application can:
-- Extract PEM and KEY files from PFX certificates
-- Generate certificate chains (root/intermediate)
-- Clean up temporary files automatically
-
-Auto-detection searches common installation paths and configures itself automatically.
+The application includes built-in PEM/KEY export with zero external dependencies:
+- Extracts PEM and PKCS#1 RSA private keys directly in .NET
+- Generates certificate chains for root and intermediate certificates
+- Works out of the box on any Windows system with .NET Framework 4.8
 
 ## Security Features
 
@@ -201,17 +191,9 @@ ZLGetCert/
 
 ### Building from Source
 
-```bash
-# Clone repository
-git clone https://github.com/ZentrixLabs/ZLGetCert.git
-cd ZLGetCert
-
-# Build solution
-msbuild ZLGetCert.sln /p:Configuration=Release
-
-# Run application
-.\ZLGetCert\bin\Release\ZLGetCert.exe
-```
+- Use Visual Studio 2022 to build (`ZLGetCert.sln`).
+- Set Configuration to Release and build the solution.
+- Note: Command-line builds (msbuild/dotnet) are not supported for this .NET Framework 4.8 WPF project.
 
 ### Development Guidelines
 - Follow existing code style and patterns
@@ -280,7 +262,7 @@ See [CONTRIBUTING.md](https://github.com/ZentrixLabs/ZLGetCert/blob/main/CONTRIB
 
 ## License
 
-Licensed under the [MIT License](https://github.com/ZentrixLabs/ZLGetCert/blob/main/LICENSE).
+Licensed under the [GNU LGPL v3.0](https://github.com/ZentrixLabs/ZLGetCert/blob/main/LICENSE).
 
 ---
 
