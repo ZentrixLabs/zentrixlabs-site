@@ -23,6 +23,11 @@ published: true
 
 SrtExtractor is a powerful Windows application that extracts and converts subtitles from video files (MKV and MP4) into SRT format. Built with .NET 9 and WPF, it provides an intuitive interface for both single-file and batch processing operations.
 
+### 🆕 What's New in v.2.6.0
+
+**Subtitle Timing and Overlapping:**
+- Fix for subtitles with overlapping timestamps. When subtitle timestamps overlap (our test show was "The 100") timestamps would show from the bottom up instead of the top down. Implemented fix to grouping of subtitles to correct for this error.
+
 ### 🆕 What's New in v2.5.1
 
 **Architecture Refactoring & Code Quality:**
