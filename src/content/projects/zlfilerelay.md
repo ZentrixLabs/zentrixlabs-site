@@ -1,8 +1,9 @@
 ---
 title: "ZL File Relay"
 short: "Enterprise file transfer solution for secure DMZ to SCADA network automation"
-status: "beta"
+status: "active"
 category: "enterprise"
+repo: "https://github.com/ZentrixLabs/ZLFileRelay"
 tags:
   - Windows
   - C#
@@ -11,19 +12,19 @@ tags:
   - Security
   - SCADA
 heroImage: "/projects/ZLFileRelay.png"
-order: 15
+order: 10
 published: true
 ---
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-beta-yellow)
+![License](https://img.shields.io/badge/license-LGPL--3.0--or--later-blue)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
 
 ## Overview
 
 **ZL File Relay** is a unified enterprise solution for secure, automated file transfer between DMZ and SCADA networks. It combines three powerful components into a single deployable package designed for industrial environments requiring robust, secure file transfers.
 
-> **Status**: Currently in beta - active development with private repository access
+> Public repository and documentation available on GitHub: https://github.com/ZentrixLabs/ZLFileRelay
 
 ## System Components
 
@@ -40,12 +41,12 @@ published: true
 ### 🌐 Web Upload Portal
 **User-friendly web interface** for file uploads:
 - Modern responsive ASP.NET Core interface
-- Windows Authentication (NTLM/Kerberos)
-- Active Directory group authorization
+- Hybrid authentication: Entra ID (Azure AD) OAuth/OIDC or Local Accounts
+- Authorization Code Flow for Entra ID
 - Multi-file upload support with progress tracking
 - User-specific upload directories
-- IIS hosted for enterprise reliability
-- Real-time status indicators
+- Runs on Kestrel; supports reverse proxy with IIS/NGINX
+- Real-time status indicators and branding
 
 ### ⚙️ Configuration Tool
 **Intuitive WPF application** for unified management:
@@ -89,11 +90,12 @@ published: true
 ### Enterprise Security
 - 🔐 **Windows DPAPI Encryption** - Credentials encrypted at rest
 - 🔑 **SSH Key Authentication** - Public key auth preferred over passwords
-- 🛡️ **Windows Authentication** - Integrated with Active Directory
+- 🛡️ **Hybrid Authentication** - Entra ID (Azure AD) + Local Accounts
+- 🔒 **Authorization Code Flow** - Secure OAuth 2.0 flow for Entra ID
 - ✅ **File Integrity Verification** - SHA-256 checksums for all transfers
-- 📝 **Comprehensive Audit Logging** - All operations logged for compliance
+- 📝 **Comprehensive Audit Logging** - All operations logged for security monitoring
 - 🚧 **Input Validation** - All inputs sanitized and validated
-- 🔒 **Secure Defaults** - Security-first configuration out of the box
+- 🌐 **SSL/TLS Support** - Certificate store integration for secure HTTPS
 
 ### Operational Excellence
 - ⚡ **Automatic Retry Logic** - Exponential backoff for failed transfers
@@ -110,7 +112,6 @@ published: true
 - **.NET 8.0 Runtime** (included in self-contained deployment)
 - **ASP.NET Core 8.0 Runtime** (for web portal)
 - **Administrative privileges** for installation
-- **IIS** (optional, for web portal hosting)
 
 ### Installation Steps
 
@@ -137,15 +138,16 @@ published: true
    - Enter SSH host, username, and destination
    - Test connection
 
-4. **Configure Web Portal**:
+4. **Configure Web Portal Authentication**:
+   - Choose Entra ID (Azure AD) or Local Accounts
+   - For Entra ID: run Setup Wizard (OAuth/OIDC Authorization Code Flow)
    - Set site name and branding
-   - Configure AD groups for access
-   - Set upload limits and policies
+   - Configure SSL certificate (via Certificate Store Browser)
 
 5. **Install & Start Services**:
-   - Click "Install Service"
-   - Click "Configure IIS" (if using web portal)
-   - Click "Start Service"
+   - Click "Install Service" to register Windows Service
+   - Start the Web Portal (runs on Kestrel; optional reverse proxy via IIS/NGINX)
+   - Click "Start Service" to begin file monitoring
 
 ## Configuration
 
@@ -221,17 +223,16 @@ ZLFileRelay/
 
 ### Technologies Used
 - **.NET 8.0** - Modern, high-performance framework
-- **ASP.NET Core** - Web portal hosting
+- **ASP.NET Core** - Web portal hosting (Kestrel)
 - **WPF** - Configuration tool UI
 - **SSH.NET** - Secure file transfers
-- **IIS** - Enterprise web hosting
 - **Windows Services** - Background processing
-- **Active Directory** - Authentication and authorization
+- **Active Directory / Entra ID** - Authentication and authorization
 
 ### Building from Source
 
 ```powershell
-# Clone repository (private access required)
+# Clone repository
 git clone https://github.com/ZentrixLabs/ZLFileRelay.git
 cd ZLFileRelay
 
@@ -298,9 +299,12 @@ Most enterprise environments already have WinRM enabled via Group Policy.
 
 ## Version History
 
-### Version 2.0.0 (Current Beta)
+### Version 2.0.0 (Current)
 - ✨ Unified product combining Service + Web Portal
 - ⬆️ Upgraded to .NET 8.0
+- 🔐 NEW: Hybrid authentication (Entra ID + Local Accounts)
+- 🌐 NEW: Switched from HTTP.sys to Kestrel for flexibility
+- 🧙 NEW: Entra ID Setup Wizard with automatic hostname detection
 - 🎨 Professional branding and configuration
 - 📦 Single installer for all components
 - ⚙️ Unified configuration tool
@@ -312,20 +316,18 @@ Most enterprise environments already have WinRM enabled via Group Policy.
 
 ## Support
 
-For technical support and access:
-- 📧 **Enterprise Support**: Contact ZentrixLabs
-- 📖 **Documentation**: Comprehensive docs included
-- 📝 **Logs**: Check `C:\FileRelay\logs`
-- 🐛 **Issues**: Private repository access required
+For technical support:
+- 📧 Email: zlfilerelay_help@zentrixlabs.net
+- 📖 Documentation: see `docs/` in the repository
+- 🐛 Issues: use GitHub Issues on the public repo
+- 📝 Logs: Check `C:\FileRelay\logs` or Windows Event Log
 
 ## License
 
 Copyright © 2025 ZentrixLabs  
-Licensed under the MIT License
+Licensed under the GNU Lesser General Public License v3.0 or later (LGPL-3.0-or-later)
 
 ---
 
 **ZL File Relay** - Secure, Reliable, Professional File Transfer for Industrial Environments
-
-*Access to the source repository is currently limited during beta development. Contact ZentrixLabs for enterprise licensing and deployment assistance.*
 
