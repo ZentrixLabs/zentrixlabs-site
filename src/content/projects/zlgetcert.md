@@ -29,7 +29,7 @@ ZLGetCert is a Windows WPF application that streamlines certificate enrollment f
 
 ### Why teams choose ZLGetCert
 
-- 🖥️ **Enterprise-Grade UI**: Modern card-based layout with Font Awesome 7 Pro icons and consistent branding
+- 🖥️ **Enterprise-Grade UI**: Modern card-based layout with Font Awesome 7 icons and consistent branding
 - 📜 **Template-Driven Workflows**: Standard, wildcard, and CSR signing with smart template detection
 - 🔐 **Pure .NET PEM/KEY Export**: Zero external dependencies; works offline on any Windows host
 - ⚙️ **Configuration-First**: Every option loaded from JSON with live validation inside the app
