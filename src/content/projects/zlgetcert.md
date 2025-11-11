@@ -32,7 +32,7 @@ ZLGetCert is a Windows WPF application that streamlines certificate enrollment f
 - 🖥️ **Enterprise-Grade UI**: Modern card-based layout with Font Awesome 7 icons and consistent branding
 - 📜 **Template-Driven Workflows**: Standard, wildcard, and CSR signing with smart template detection
 - 🔐 **Pure .NET PEM/KEY Export**: Zero external dependencies; works offline on any Windows host
-- ⚙️ **Configuration-First**: Every option loaded from JSON with live validation inside the app
+- ⚙️ **Configuration-First**: Every option loaded from JSON with environment-specific defaults
 - 🛡️ **Security Hardened**: SecureString handling, command injection safeguards, and password enforcement baked in
 - 📊 **Audit Ready**: Centralized, configurable logging with full activity traceability
 
@@ -134,9 +134,9 @@ All runtime options are delivered through JSON configuration—no hardcoded defa
 }
 ```
 
-- **In-App Settings Editor**: Real-time JSON validation with color-coded feedback (green/yellow/red).
-- **Instant Apply**: Changes write to user-scoped configuration and take effect immediately.
-- **Configuration Safety**: Built-in validation prevents saving invalid JSON or unsupported values.
+- **Settings Panel**: Form-based controls for CA connections, defaults, and logging without touching raw JSON.
+- **Per-User Profiles**: Writes user overrides to `%APPDATA%\ZentrixLabs\ZLGetCert\appsettings.json` while keeping the installation baseline read-only.
+- **Configuration as Code**: Ship environment-specific JSON templates alongside releases for version-controlled changes.
 
 ## Logging & Auditing
 
