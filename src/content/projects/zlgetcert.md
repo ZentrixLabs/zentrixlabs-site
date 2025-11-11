@@ -16,7 +16,7 @@ order: 25
 published: true
 ---
 
-![License](https://img.shields.io/github/license/ZentrixLabs/ZLGetCert)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 ![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8-blue)
 [![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)](https://www.microsoft.com/windows)
 ![Release](https://img.shields.io/github/v/release/ZentrixLabs/ZLGetCert)
