@@ -18,72 +18,91 @@ published: true
 
 ![License](https://img.shields.io/github/license/ZentrixLabs/ZLGetCert)
 ![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8-blue)
+[![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)](https://www.microsoft.com/windows)
 ![Release](https://img.shields.io/github/v/release/ZentrixLabs/ZLGetCert)
+[![Version](https://img.shields.io/github/v/tag/ZentrixLabs/ZLGetCert?label=Version&sort=semver)](https://github.com/ZentrixLabs/ZLGetCert/tags)
 
 ## Overview
 
-ZLGetCert is a modern Windows WPF application that simplifies certificate requests from on-premises Certificate Authority (CA) without requiring PowerShell or command-line expertise. Features a clean, card-based UI with comprehensive configuration management.
+ZLGetCert is a Windows WPF application that streamlines certificate enrollment from on-premises Certificate Authorities—no PowerShell or command-line experience required. Built on **.NET Framework 4.8**, it is intentionally compatible with legacy servers, OT/SCADA networks, and air-gapped environments.
 
-> **Status**: Stable release v1.8.2 — digitally signed installer. See the latest release on GitHub.
+> **Status**: Digitally signed installer available on GitHub. Grab the latest release for production deployments.
 
-### Key Features
+### Why teams choose ZLGetCert
 
-- 🎨 **Modern UI**: Clean, card-based interface with improved UX and visual hierarchy
-- 📜 **Multiple Certificate Types**: Standard, Wildcard, and CSR-based certificates
-- ⚙️ **Configurable Options**: Dynamic hash algorithms and log levels from configuration
-- 📝 **Centralized Logging**: Comprehensive logging system
-- 🔧 **Environment Configuration**: Flexible `appsettings.json` configuration
-- 🔐 **Pure .NET PEM/KEY Export**: No external dependencies required
-- 🔒 **Secure Password Handling**: User-configurable PFX passwords with secure storage
-- ⛓️ **Certificate Chain Support**: Automatic root/intermediate compilation
-- ⚡ **Real-time Validation**: JSON validator with instant feedback
+- 🖥️ **Enterprise-Grade UI**: Modern card-based layout with Font Awesome 7 Pro icons and consistent branding
+- 📜 **Template-Driven Workflows**: Standard, wildcard, and CSR signing with smart template detection
+- 🔐 **Pure .NET PEM/KEY Export**: Zero external dependencies; works offline on any Windows host
+- ⚙️ **Configuration-First**: Every option loaded from JSON with live validation inside the app
+- 🛡️ **Security Hardened**: SecureString handling, command injection safeguards, and password enforcement baked in
+- 📊 **Audit Ready**: Centralized, configurable logging with full activity traceability
+
+## Prerequisites
+
+- Windows Server 2016 or later (2012 R2 supported)
+- .NET Framework 4.8 (built-in on Server 2019+)
+- Local administrator rights for certificate store operations
 
 ## Quick Start
 
-### Prerequisites
-- **Windows Server 2016** or later
-- **.NET Framework 4.8**
-- **No OpenSSL required** (built-in PEM/KEY export)
-- **Administrator privileges** (for certificate store operations)
+1. **Download** the signed installer or binaries from [GitHub Releases](https://github.com/ZentrixLabs/ZLGetCert/releases).
+2. **Install** (or build from source via Visual Studio) and launch the application.
+3. **Configure** your CA connection and defaults via the in-app ⚙️ Settings panel.
+4. **Generate or sign** certificates using the guided workflow.
 
-### Getting Started
+## Core Functionality
 
-1. **Download**: Get the latest release from [GitHub](https://github.com/ZentrixLabs/ZLGetCert/releases)
-2. **Configure**: Set up your CA settings via Edit → Settings
-3. **Generate**: Create certificates using the intuitive interface
+- **Modern UI/UX**: Real-time validation, validation summary cards, and inline feedback to reduce form errors.
+- **Multi-Workflow Support**: Standard and wildcard enrollment, plus dedicated CSR import with streamlined signing.
+- **Template Automation**: Smart template recommendations detect certificate type, OIDs, and key usage automatically.
+- **Certificate Chain Builder**: Automatically compiles intermediate and root certificates for complete bundles.
+- **Password Tools**: One-click 16-character strong password generation with live strength meter and policy indicators.
 
-## Certificate Types
+## Security & Compliance
 
-### Standard Certificate
-Create regular hostname certificates with multiple Subject Alternative Names (SANs):
+- **SecureString Passwords**: Sensitive values stored securely in memory and disposed automatically.
+- **Command Injection Prevention**: DNS, file path, template, and thumbprint validation on all external process calls.
+- **Strong Password Enforcement**: Blocks weak/common passwords and enforces length and complexity requirements.
+- **Template/Type Validation**: Guards against mismatched Enhanced Key Usage combinations before submission.
+- **Pure .NET Cryptography**: PEM/KEY export via `System.Security.Cryptography`—no OpenSSL, no third-party binaries.
+- **User-Scope Configuration**: Settings stored in `%APPDATA%\ZentrixLabs\ZLGetCert\appsettings.json`, keeping admin templates read-only.
 
-1. Select "Standard Certificate" radio button
-2. Enter hostname in the Domain field
-3. Add SANs if needed
-4. Configure organization information
-5. Set PFX password
-6. Click "Generate Certificate"
+## User Experience Highlights
 
-### Wildcard Certificate
-Generate wildcard domain certificates:
+- **Certificate Subject Preview** updates live as you type X.500 details.
+- **Bulk SAN Entry** supports pasting 10+ DNS/IP entries at once—90% faster than single-field workflows.
+- **FQDN Auto-Generation** suggests fully qualified hostnames with manual override when needed.
+- **Template Help Tooltips** explain usage scenarios directly within the UI.
+- **CSR Workflow Clarity** hides irrelevant fields after importing a CSR to reduce confusion.
 
-1. Select "Wildcard Certificate" radio button
-2. Enter wildcard domain (e.g., `*.domain.com`)
-3. Configure location and company details
-4. Set PFX password
-5. Generate certificate
+## Installation & Deployment
 
-### CSR-Based Request
-Submit existing Certificate Signing Requests:
+### Build from Source
 
-1. Select "From CSR" radio button
-2. Browse to existing CSR file
-3. Set PFX password
-4. Submit to CA
+1. Clone the repository and open `ZLGetCert.sln` in Visual Studio 2019 or newer.
+2. Build the solution in `Release | x64`.
+3. Run `ZLGetCert\bin\Release\ZLGetCert.exe`.
 
-## Configuration
+> Command-line `msbuild`/`dotnet` builds are not supported for this .NET Framework 4.8 WPF project.
 
-### appsettings.json Structure
+### Silent Enterprise Install
+
+```cmd
+ZLGetCertInstaller.exe /SILENT /NORESTART
+```
+
+```cmd
+ZLGetCertInstaller.exe /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /LOG="C:\Windows\Temp\ZLGetCert_install.log"
+```
+
+Additional flags:
+- `/DIR="C:\Custom\Path"` – Set installation directory
+- `/NOICONS` – Skip Start Menu shortcuts
+- `/TASKS="desktopicon"` – Force desktop shortcut creation
+
+## Configuration & Management
+
+All runtime options are delivered through JSON configuration—no hardcoded defaults.
 
 ```json
 {
@@ -108,161 +127,53 @@ Submit existing Certificate Signing Requests:
   "Logging": {
     "LogLevel": "Information",
     "LogToFile": true,
+    "LogToConsole": false,
     "MaxLogFileSize": "10MB",
-    "MaxLogFiles": 5
+    "MaxLogFiles": 5,
+    "AvailableLogLevels": ["Trace", "Debug", "Information", "Warning", "Error", "Fatal"]
   }
 }
 ```
 
-### Configuration Features
-
-- **Dynamic Options**: All UI options loaded from configuration
-- **No Hardcoded Values**: Easy customization through JSON
-- **Environment-Specific**: Different settings for different deployments
-- **JSON Validator**: Real-time validation with color-coded feedback
-- **Configuration Editor**: Direct JSON editing with syntax validation
-
-## Advanced Features
-
-### Settings Panel
-Access comprehensive configuration:
-- Click the ⚙️ Settings button
-- Modify CA server settings, file paths, and defaults
-- Configure logging options and hash algorithms
-- Changes applied immediately
-
-### Configuration Editor
-Direct JSON editing capabilities:
-- Go to Edit → Configuration Editor
-- Real-time JSON validation:
-  - ✅ **Green**: Valid JSON - Ready to save
-  - ⚠️ **Yellow**: Configuration issues
-  - ❌ **Red**: Invalid JSON - Syntax errors
-- Detailed error messages
-- Safety checks prevent invalid configurations
-
-### PEM/KEY Export (Pure .NET)
-
-The application includes built-in PEM/KEY export with zero external dependencies:
-- Extracts PEM and PKCS#1 RSA private keys directly in .NET
-- Generates certificate chains for root and intermediate certificates
-- Works out of the box on any Windows system with .NET Framework 4.8
-
-## Security Features
-
-- **SecureString**: Passwords handled securely in memory
-- **Password Masking**: UI and log password protection
-- **Automatic Cleanup**: Memory cleared after operations
-- **Secure Storage**: Encrypted password storage in configuration
+- **In-App Settings Editor**: Real-time JSON validation with color-coded feedback (green/yellow/red).
+- **Instant Apply**: Changes write to user-scoped configuration and take effect immediately.
+- **Configuration Safety**: Built-in validation prevents saving invalid JSON or unsupported values.
 
 ## Logging & Auditing
 
-All operations logged to `C:\ProgramData\ZentrixLabs\ZLGetCert`:
-- **Detailed Operations**: Complete audit trail
-- **Error Tracking**: Comprehensive error logging
-- **Configurable Levels**: From Trace to Fatal
-- **Rolling Files**: Automatic log rotation
-- **Size Management**: Configurable max file size
+Operations log to `C:\ProgramData\ZentrixLabs\ZLGetCert`, providing:
+- Detailed operation and error logs
+- Configurable verbosity (Trace → Fatal)
+- Rolling file retention and maximum size controls
+- Audit-ready history for compliance teams
 
-## Architecture
+## Designed for Restricted Environments
 
-### Project Structure
-```
-ZLGetCert/
-├── Models/           # Data models (AppConfiguration, etc.)
-├── ViewModels/       # MVVM ViewModels
-├── Views/            # WPF XAML views
-├── Services/         # Business logic services
-├── Utilities/        # Helper classes
-├── Enums/            # Enumerations
-├── Styles/           # XAML styles and templates
-├── Converters/       # Value converters for data binding
-└── appsettings.json  # Application configuration
-```
+- **Air-Gapped Ready**: Runs fully offline with no telemetry or forced updates.
+- **Minimal Footprint**: Single WPF executable with bundled dependencies.
+- **Policy Friendly**: Targets .NET Framework 4.8—commonly pre-approved in enterprise environments.
+- **Predictable Behavior**: No registry modifications beyond standard .NET requirements.
 
-### Technologies
-- **.NET Framework 4.8**: Target framework
-- **WPF**: Windows Presentation Foundation
-- **MVVM Pattern**: Model-View-ViewModel architecture
-- **Newtonsoft.Json**: Configuration serialization
-- **NLog**: Logging framework
+## Documentation & Support
 
-## Development
-
-### Building from Source
-
-- Use Visual Studio 2022 to build (`ZLGetCert.sln`).
-- Set Configuration to Release and build the solution.
-- Note: Command-line builds (msbuild/dotnet) are not supported for this .NET Framework 4.8 WPF project.
-
-### Development Guidelines
-- Follow existing code style and patterns
-- Add appropriate error handling and logging
-- Update documentation for new features
-- Test changes thoroughly
-- Ensure all existing tests pass
-
-## Roadmap
-
-Future enhancements planned:
-- 🔄 **Certificate Renewal**: Automated renewal workflows
-- 🌐 **Multi-language Support**: Internationalization
-- 🔌 **Plugin Architecture**: Custom validators
-- 📊 **Enhanced Reporting**: Certificate inventory and expiry tracking
-- 🎯 **Additional Certificate Types**: Extended format support
-
-## Troubleshooting
-
-### Common Issues
-
-**CA Connection Fails**
-- Verify CA server name in settings
-- Check network connectivity
-- Ensure proper permissions
-
-**OpenSSL Not Detected**
-- Install OpenSSL for Windows
-- Check configured paths in settings
-- Verify executable permissions
-
-**Certificate Generation Errors**
-- Review logs in `C:\ProgramData\ZentrixLabs\ZLGetCert`
-- Verify CA template permissions
-- Check domain validation
-
-**Configuration Issues**
-- Use Configuration Editor for validation
-- Check JSON syntax
-- Verify all required fields
-
-### Support Resources
-- Check logs in `C:\ProgramData\ZentrixLabs\ZLGetCert`
-- Review configuration in `appsettings.json`
-- Create issues on [GitHub](https://github.com/ZentrixLabs/ZLGetCert/issues)
-- Verify OpenSSL installation if using PEM/KEY extraction
+- Primary documentation and user guides live in the repository’s `docs/` folder.
+- Feature-specific walkthroughs cover SAN management, password UX, template selection, and more.
+- For issues or feature requests, open a ticket on [GitHub](https://github.com/ZentrixLabs/ZLGetCert/issues).
+- Review local logs and the in-app configuration editor for troubleshooting guidance.
 
 ## Recent Updates
 
-- ✅ Modern card-based UI layout
-- ✅ Configuration-driven options
-- ✅ Real-time JSON validation
-- ✅ Enhanced logging and auditing
-- ✅ Improved security features
-- ✅ Comprehensive documentation
+- **Security Hardening**: SecureString handling, command sanitation, strong password enforcement, and EKU validation.
+- **UX Enhancements**: Inline validation, template guidance, certificate subject preview, and improved password tooling.
+- **PEM Export Overhaul**: Fully managed PEM/KEY generation with certificate chain packaging.
+- **Branding Refresh**: Font Awesome 7 Pro icons, standardized palette, and modern card-based layout.
+- **Documentation Expansion**: New security and UX guides, implementation summaries, and testing checklists.
 
-## Contributing
+## Project Details
 
-We welcome contributions! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes with tests
-4. Submit a pull request
-
-See [CONTRIBUTING.md](https://github.com/ZentrixLabs/ZLGetCert/blob/main/CONTRIBUTING.md) for details.
-
-## License
-
-Licensed under the [GNU LGPL v3.0](https://github.com/ZentrixLabs/ZLGetCert/blob/main/LICENSE).
+- **Tech Stack**: .NET Framework 4.8, WPF, MVVM, Font Awesome 7 Pro, Newtonsoft.Json, NLog.
+- **Repository**: [GitHub – ZentrixLabs/ZLGetCert](https://github.com/ZentrixLabs/ZLGetCert)
+- **License**: [GNU LGPL v3.0](https://github.com/ZentrixLabs/ZLGetCert/blob/main/LICENSE)
 
 ---
 
